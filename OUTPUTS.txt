@@ -1,0 +1,89 @@
+[1] "# Estructura de los datos"
+'data.frame':	1070 obs. of  18 variables:
+ $ Purchase      : Factor w/ 2 levels "CH","MM": 1 1 1 2 1 1 1 1 1 1 ...
+ $ WeekofPurchase: num  237 239 245 227 228 230 232 234 235 238 ...
+ $ StoreID       : num  1 1 1 1 7 7 7 7 7 7 ...
+ $ PriceCH       : num  1.75 1.75 1.86 1.69 1.69 1.69 1.69 1.75 1.75 1.75 ...
+ $ PriceMM       : num  1.99 1.99 2.09 1.69 1.69 1.99 1.99 1.99 1.99 1.99 ...
+ $ DiscCH        : num  0 0 0.17 0 0 0 0 0 0 0 ...
+ $ DiscMM        : num  0 0.3 0 0 0 0 0.4 0.4 0.4 0.4 ...
+ $ SpecialCH     : num  0 0 0 0 0 0 1 1 0 0 ...
+ $ SpecialMM     : num  0 1 0 0 0 1 1 0 0 0 ...
+ $ LoyalCH       : num  0.5 0.6 0.68 0.4 0.957 ...
+ $ SalePriceMM   : num  1.99 1.69 2.09 1.69 1.69 1.99 1.59 1.59 1.59 1.59 ...
+ $ SalePriceCH   : num  1.75 1.75 1.69 1.69 1.69 1.69 1.69 1.75 1.75 1.75 ...
+ $ PriceDiff     : num  0.24 -0.06 0.4 0 0 0.3 -0.1 -0.16 -0.16 -0.16 ...
+ $ Store7        : Factor w/ 2 levels "No","Yes": 1 1 1 1 2 2 2 2 2 2 ...
+ $ PctDiscMM     : num  0 0.151 0 0 0 ...
+ $ PctDiscCH     : num  0 0 0.0914 0 0 ...
+ $ ListPriceDiff : num  0.24 0.24 0.23 0 0 0.3 0.3 0.24 0.24 0.24 ...
+ $ STORE         : num  1 1 1 1 0 0 0 0 0 0 ...
+NULL
+[1] "# Comprobamos valores faltantes en la variable respuesta"
+[1] 0
+null device 
+          1 
+[1] "# Tabla frecuencias variable respuesta"
+
+ CH  MM 
+653 417 
+[1] "# Tabla proporciones variable respuesta"
+
+  CH   MM 
+0.61 0.39 
+[1] "Para que los modelos generados sean útiles, el porcentaje de aciertos en cuanto a la clasificación de las observaciones ha de superar un nivel mínimo, en este caso, el que se obtendría si la predicción de todas las observaciones se correspondiera con la clase mayoritaria."
+[1] "La clase mayoritaria (moda) en este caso es la bebida CH con el 61% de las compras. Este será el nivel basal a superar por el modelo (este es el porcentaje mínimo de aciertos si siempre se predijera CH). (Recalcular este valor con los datos de entrenamiento)"
+[1] "# Dimensión de los datos de entrenamiento"
+[1] 857  18
+[1] "# Dimensión Datos test"
+[1] 213  18
+[1] "#Podemos acceder a los errores de validación con cada valor de coste con la función summary():"
+
+Parameter tuning of ‘svm’:
+
+- sampling method: 10-fold cross validation 
+
+- best parameters:
+
+- best performance: 0.1656772 
+
+- Detailed performance results:
+
+[1] "# NOmbres del modelo"
+[1] "best.parameters"  "best.performance" "method"           "nparcomb"        
+[5] "train.ind"        "sampling"         "performances"     "best.model"      
+null device 
+          1 
+[1] "El valor de coste que resulta en el menor error de validación (0,165) es 15."
+[1] "# Almacenamos el modelo optimo obtenido y accedemos a su información"
+
+Call:
+best.tune(method = svm, train.x = Purchase ~ ., data = datosOJ_train, 
+    ranges = list(cost = c(0.001, 0.01, 0.1, 1, 5, 10, 15, 20)), kernel = "linear", 
+    scale = TRUE)
+
+
+Parameters:
+   SVM-Type:  C-classification 
+ SVM-Kernel:  linear 
+       cost:  15 
+
+Number of Support Vectors:  345
+
+ ( 173 172 )
+
+
+Number of Classes:  2 
+
+Levels: 
+ CH MM
+
+
+
+[1] "El número de vectores soporte es de 345, 173 de la clase CH y 172 de la clase MM."
+[1] "# Muestra de 50 de los 345"
+[1]  1 15 24 28 32 45
+null device 
+          1 
+  |                                                                                     |                                                                             |   0%  |                                                                                     |......                                                                       |   8%  |                                                                                     |............                                                                 |  15%  |                                                                                     |..................                                                           |  23%  |                                                                                     |........................                                                     |  31%  |                                                                                     |..............................                                               |  38%  |                                                                                     |....................................                                         |  46%  |                                                                                     |.........................................                                    |  54%  |                                                                                     |...............................................                              |  62%  |                                                                                     |.....................................................                        |  69%  |                                                                                     |...........................................................                  |  77%  |                                                                                     |.................................................................            |  85%  |                                                                                     |.......................................................................      |  92%  |                                                                                     |.............................................................................| 100%
+[1] "main.r"
