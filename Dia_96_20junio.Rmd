@@ -1,3 +1,15 @@
+---
+title: "Dia_96_20junio"
+author: "Daniel Felipe Villa Rengifo"
+date: "23/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
 ```{r, eval=FALSE, include=TRUE}
 "Protocolo:
  
@@ -183,5 +195,11 @@ for (x in plotc) {
 }
 
 dev.off()
+```
+
+
+```{r}
+library(knitr)
+purl("Dia_96_20junio.Rmd", "main.r")
 ```
 

@@ -1,35 +1,17 @@
-```{r, eval=FALSE, include=TRUE}
-"Protocolo:
- 
- 1. Daniel Felipe Villa Rengifo
- 
- 2. Lenguaje: R
- 
- 3. Tema: Maquinas de Vector Soporte [Parte 1]
- 
- 4. Fuentes:  
-    https://www.datacamp.com/community/tutorials/support-vector-machines-r"
-```
+## ---- eval=FALSE, include=TRUE-------------------------------------------------------
+## "Protocolo:
+## 
+##  1. Daniel Felipe Villa Rengifo
+## 
+##  2. Lenguaje: R
+## 
+##  3. Tema: Maquinas de Vector Soporte [Parte 1]
+## 
+##  4. Fuentes:
+##     https://www.datacamp.com/community/tutorials/support-vector-machines-r"
 
 
-# Support vector classifier/machine: library(e1071)
-
-_En el ámbito del "machine learning", las máquinas de vectores de apoyo son modelos de aprendizaje supervisado con algoritmos de aprendizaje asociados que analizan datos utilizados para la clasificación y el análisis de regresión. Sin embargo, se utilizan sobre todo en problemas de clasificación. En este tutorial, trataremos de obtener una comprensión de alto nivel de cómo funcionan las SVM y luego las implementaremos utilizando R._
-
-
-+ `svm()` -> Ajuste de modelo support vector classifier (kernel = “linear”) y support vector machine (kernel = “polinomial”, “radial”…). Si la variable respuesta contiene más de dos niveles, la función lleva a cabo la clasificación usando el método one-vs-one
-
-+ `tune()` -> Función genérica para optimización de hiperparámetros mediante validación cruzada
-
-+ `plot.svm()`
-
-Para este ejemplo de clasificación utilizaremos el set de datos `OJ`, del paquete `ISLR`. Contiene información sobre compra de dos tipos de bebida (Citrus Hill y Minute Maid Orange Juice) por parte de 1070 clientes (las variables registran distintas características del cliente y el producto). Generaremos modelos basados en SVM con tres tipos de kernel: lineal, polinómico y radial, que predigan qué tipo de bebida (Purchase) compra el consumidor, en función del conjunto de predictores.
-
-> NOTA: La variable respuesta ha de estar codificada como factor.
-
-> NOTA: Un número alto de variables en relación al número de observaciones implicaría que es fácil encontrar un hiperplano que separe completamente las clases.
-
-```{r}
+## ------------------------------------------------------------------------------------
 # Guardamos los OUTPUTS:
 sink("OUTPUTS.txt")
 
@@ -81,11 +63,9 @@ prop.table(table(OJ$Purchase)) %>% round(digits = 2)
 "Para que los modelos generados sean útiles, el porcentaje de aciertos en cuanto a la clasificación de las observaciones ha de superar un nivel mínimo, en este caso, el que se obtendría si la predicción de todas las observaciones se correspondiera con la clase mayoritaria."
 
 "La clase mayoritaria (moda) en este caso es la bebida CH con el 61% de las compras. Este será el nivel basal a superar por el modelo (este es el porcentaje mínimo de aciertos si siempre se predijera CH). (Recalcular este valor con los datos de entrenamiento)"
-```
 
-__Antes de proceder a generar los modelos, dividimos el set de datos en un grupo de entrenamiento (para el ajuste de los modelos) y otro de test (para la evaluación de los mismos).__
 
-```{r}
+## ------------------------------------------------------------------------------------
 # Cargamos la libreria
 library(caret)
 
@@ -103,13 +83,9 @@ dim(datosOJ_train)
 datosOJ_test <- OJ[-train, ]
 print("# Dimensión Datos test")
 dim(datosOJ_test)
-```
 
-# Support vector classifier
 
-## Ajuste del Modelo:
-
-```{r}
+## ------------------------------------------------------------------------------------
 # Cargamos la libreria
 library(e1071)
 
@@ -183,5 +159,3 @@ for (x in plotc) {
 }
 
 dev.off()
-```
-
