@@ -183,5 +183,6 @@ for (x in plotc) {
 }
 
 dev.off()
-```
 
+sink()
+```

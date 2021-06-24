@@ -198,7 +198,7 @@ dev.off()
 ```
 
 
-```{r}
+```{r,eval=FALSE, include=TRUE}
 library(knitr)
 purl("Dia_96_20junio.Rmd", "main.r")
 ```
